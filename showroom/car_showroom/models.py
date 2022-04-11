@@ -1,6 +1,6 @@
-from django_countries.fields import CountryField
+from django.contrib.auth.models import User
 from django.db import models
-from django.contrib.auth.models import AbstractUser, AbstractBaseUser
+from django_countries.fields import CountryField
 
 
 # Create your models here.
@@ -24,7 +24,7 @@ class Car(CustomBaseModel):
         return self.name
 
 
-class CarShowroom(AbstractBaseUser):
+class CarShowroom(User, CustomBaseModel):
     name = models.CharField(max_length=100)
     location = CountryField()
     balance = models.DecimalField(max_digits=5, decimal_places=2)
@@ -45,7 +45,7 @@ class Offer(CustomBaseModel):
     car = models.OneToOneField("Car", on_delete=models.DO_NOTHING)
 
 
-class Customer(AbstractUser):
+class Customer(User, CustomBaseModel):
     balance = models.DecimalField(max_digits=5, decimal_places=2)
     transactions = models.ForeignKey("Offer", on_delete=models.DO_NOTHING)
 
@@ -53,10 +53,10 @@ class Customer(AbstractUser):
         return self.first_name
 
 
-class Supplier(AbstractUser):
+class Supplier(User, CustomBaseModel):
     name = models.CharField(max_length=50)
     buyers = models.PositiveIntegerField()
-    sell_list = models.ManyToManyField("Car", through='CarSellList')
+    sell_list = models.ManyToManyField("Car", through="CarSellList")
 
     def __str__(self):
         return self.first_name

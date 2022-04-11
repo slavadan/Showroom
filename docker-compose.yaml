@@ -14,9 +14,9 @@ services:
 
   web:
     build: .
-    command: sh ./run_web.sh
+    command: sh run_web.sh
     volumes:
-      - .:/home/slavadan/docker
+      - .:/docker
     ports:
       - 8000:8000
     depends_on:
