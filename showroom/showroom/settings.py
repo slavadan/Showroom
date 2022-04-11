@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-@v%^ct0dt0(p$=0=wrycltqf7z45y@vvgzwl3dwmr7z)zans0!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -77,12 +77,12 @@ WSGI_APPLICATION = 'showroom.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'showroom',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'catalog',
         'USER': 'myuser',
         'PASSWORD': 'mypass',
-        'HOST': 'localhost',
-        'PORT': '',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
 
