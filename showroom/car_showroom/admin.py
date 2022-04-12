@@ -7,6 +7,7 @@ from .models import Car
 class CarAdmin(admin.ModelAdmin):
     list_display = (
         'name',
+        'image',
         'max_speed',
         'engine_power',
         'mileage',

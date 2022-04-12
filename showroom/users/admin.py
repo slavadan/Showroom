@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CarShowroom, Customer, Supplier, ShowroomCarOnSale, SupplierSellCar
+from .models import CarShowroom, Customer, Supplier, ShowroomSellCar, SupplierSellCar
 
 
 # Register your models here.
@@ -30,7 +30,7 @@ class SupplierAdmin(admin.ModelAdmin):
     )
 
 
-@admin.register(ShowroomCarOnSale)
+@admin.register(ShowroomSellCar)
 class ShowroomCarOnSaleAdmin(admin.ModelAdmin):
     list_display = (
         'car',

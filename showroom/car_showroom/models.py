@@ -15,4 +15,4 @@ class Car(CustomBaseModel):
     image = models.URLField(blank=True)
 
     def __str__(self):
-        return f'{self.name}|{self.image}'
+        return self.name

@@ -13,7 +13,7 @@ class CarShowroom(CustomBaseModel, User):
     balance = PositiveDecimalField(max_digits=5, decimal_places=2)
     car_list = models.ManyToManyField(
         Car,
-        through="ShowroomCarOnSale"
+        through="ShowroomSellCar"
     )
     buy_query = models.JSONField(
         blank=True,
@@ -30,7 +30,7 @@ class CarShowroom(CustomBaseModel, User):
         return self.name
 
 
-class ShowroomCarOnSale(CustomBaseModel):
+class ShowroomSellCar(CustomBaseModel):
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     showroom = models.ForeignKey(CarShowroom, on_delete=models.CASCADE)
     count = models.PositiveIntegerField(default=0)
