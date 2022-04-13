@@ -31,7 +31,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -86,11 +86,11 @@ WSGI_APPLICATION = "showroom.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": os.environ['POSTGRES_ENGINE'],
-        "NAME": os.environ['POSTGRES_DB'],
-        "USER": os.environ['POSTGRES_USER'],
-        "PASSWORD": os.environ['POSTGRES_PASSWORD'],
-        "HOST": os.environ['POSTGRES_HOST'],
-        "PORT": os.environ['POSTGRES_PORT'],
+        "NAME": os.environ['DB_NAME'],
+        "USER": os.environ['DB_USER'],
+        "PASSWORD": os.environ['DB_PASSWORD'],
+        "HOST": os.environ['DB_HOST'],
+        "PORT": os.environ['DB_PORT'],
     }
 }
 

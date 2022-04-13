@@ -1,13 +1,9 @@
 #!/bin/sh
 
-sleep 5
+cd /showroom
 
-cd /docker
+python manage.py makemigrations
 
-python ./showroom/manage.py makemigrations
+python manage.py migrate
 
-python ./showroom/manage.py migrate
-
-sleep 5
-
-python ./showroom/manage.py runserver 0.0.0.0:8000
+python manage.py runserver 0.0.0.0:8000
