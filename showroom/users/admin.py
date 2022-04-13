@@ -1,50 +1,13 @@
 from django.contrib import admin
-from .models import CarShowroom, Customer, Supplier, ShowroomSellCar, SupplierSellCar
+from .models import ShowroomUser
 
 
-# Register your models here.
-@admin.register(CarShowroom)
-class CarShowroomAdmin(admin.ModelAdmin):
+@admin.register(ShowroomUser)
+class ShowroomUserAdmin(admin.ModelAdmin):
     list_display = (
-        'name',
-        'location',
-        'balance',
-        'buy_query',
-    )
-
-
-@admin.register(Customer)
-class CustomerAdmin(admin.ModelAdmin):
-    list_display = (
-        'first_name',
-        'balance',
-    )
-
-
-@admin.register(Supplier)
-class SupplierAdmin(admin.ModelAdmin):
-    list_display = (
-        'name',
-        'date_of_creation',
-        'buyers',
-    )
-
-
-@admin.register(ShowroomSellCar)
-class ShowroomCarOnSaleAdmin(admin.ModelAdmin):
-    list_display = (
-        'car',
-        'count',
-        'price',
-    )
-
-
-@admin.register(SupplierSellCar)
-class SupplierSellListAdmin(admin.ModelAdmin):
-    list_display = (
-        'car',
-        'supplier',
-        'price',
-        'country',
-        'count',
+        'username',
+        'date_joined',
+        'is_supplier',
+        'is_customer',
+        'is_showroom',
     )
