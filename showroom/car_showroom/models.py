@@ -43,7 +43,12 @@ class CarShowroom(DateModel):
             'type': 'sedan'
         }
     )
-    unique_buyers = models.ForeignKey("Customer", on_delete=models.CASCADE)
+    unique_buyers = models.ForeignKey(
+        "Customer",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
 
     def __str__(self):
         return f'{self.name}-{self.location}'
@@ -67,7 +72,12 @@ class Customer(DateModel):
     age = models.PositiveIntegerField(blank=True)
     balance = PositiveDecimalField(max_digits=5, decimal_places=2)
     phone = models.CharField(max_length=30, blank=True)
-    transactions = models.ForeignKey('Transaction', on_delete=models.CASCADE)
+    transactions = models.ForeignKey(
+        'Transaction',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
 
     def __str__(self):
         template = '{0.first_name} {0.last_name} {0.gender} {0.age}'
@@ -79,10 +89,9 @@ class Transaction(DateModel):
     count = models.PositiveIntegerField(default=1)
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     car_showroom = models.ForeignKey(CarShowroom, on_delete=models.CASCADE)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.customer}-{self.car_showroom}'
+        return f'{self.car_showroom}-{self.count}'
 
 
 class Supplier(DateModel):
