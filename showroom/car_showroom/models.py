@@ -40,7 +40,7 @@ class CarShowroom(DateModel):
             'max_speed': 0,
             'engine_power': 0,
             'color': 'white',
-            'type': 'sedan'
+            'type': 'sedan',
         }
     )
     unique_buyers = models.ForeignKey(
@@ -51,7 +51,8 @@ class CarShowroom(DateModel):
     )
 
     def __str__(self):
-        return f'{self.name}-{self.location}'
+        template = '{0.name} {0.location}'
+        return template.format(self)
 
 
 class ShowroomSellCar(DateModel):
@@ -78,6 +79,19 @@ class Customer(DateModel):
         null=True,
         blank=True
     )
+    buy_query = models.JSONField(
+        blank=True,
+        default={
+            'brand': "renault",
+            'model': "",
+            'count': 1,
+            'max_speed': 0,
+            'engine_power': 0,
+            'color': 'white',
+            'type': 'sedan',
+            'year': 0
+        }
+    )
 
     def __str__(self):
         template = '{0.first_name} {0.last_name} {0.gender} {0.age}'
@@ -91,7 +105,8 @@ class Transaction(DateModel):
     car_showroom = models.ForeignKey(CarShowroom, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.car_showroom}-{self.count}'
+        template = '{0.car} {0.price} {0.count}'
+        return template.format(self)
 
 
 class Supplier(DateModel):
@@ -113,4 +128,5 @@ class SupplierSellCar(DateModel):
     price = PositiveDecimalField(max_digits=5, decimal_places=2)
 
     def __str__(self):
-        return f'{self.supplier}->{self.car}'
+        template = '{0.supplier} {0.car}'
+        return template.format(self)

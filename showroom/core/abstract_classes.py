@@ -18,3 +18,7 @@ class AbstractSale(models.Model):
 
     class Meta:
         abstract = True
+
+    def __str__(self):
+        template = '{0.name} {0.percent} {0.end_date}'
+        return template.format(self)
