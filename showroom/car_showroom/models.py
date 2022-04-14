@@ -10,7 +10,6 @@ class Car(DateModel):
     brand = models.CharField(max_length=50)
     model = models.CharField(max_length=50)
     max_speed = models.PositiveIntegerField(default=0)
-    email = models.EmailField(blank=True)
     engine = models.CharField(max_length=50)
     engine_power = models.PositiveIntegerField(default=0)
     mileage = models.FloatField(default=0)
@@ -28,6 +27,7 @@ class Car(DateModel):
 class CarShowroom(DateModel):
     name = models.CharField(max_length=100)
     location = CountryField(blank=True)
+    email = models.EmailField(blank=True)
     balance = PositiveDecimalField(max_digits=5, decimal_places=2)
     cars = models.ManyToManyField(
         Car,
@@ -43,6 +43,7 @@ class CarShowroom(DateModel):
             'type': 'sedan'
         }
     )
+    unique_buyers = models.ForeignKey("Customer", on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.name}-{self.location}'
@@ -66,7 +67,7 @@ class Customer(DateModel):
     age = models.PositiveIntegerField(blank=True)
     balance = PositiveDecimalField(max_digits=5, decimal_places=2)
     phone = models.CharField(max_length=30, blank=True)
-    transactions = models.ManyToManyField(Car, through="Transaction")
+    transactions = models.ForeignKey('Transaction', on_delete=models.CASCADE)
 
     def __str__(self):
         template = '{0.first_name} {0.last_name} {0.gender} {0.age}'
@@ -88,6 +89,7 @@ class Supplier(DateModel):
     name = models.CharField(max_length=50)
     date_of_creation = models.DateField(blank=True)
     number_of_buyers = models.PositiveIntegerField(default=0)
+    email = models.EmailField(blank=True)
     cars = models.ManyToManyField(Car, through='SupplierSellCar')
     location = CountryField(blank=True)
 

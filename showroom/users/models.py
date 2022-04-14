@@ -9,5 +9,5 @@ class ShowroomUser(User):
     is_showroom = models.BooleanField(default=False)
 
     def __str__(self):
-        template = '{0.username} {0.}'
+        template = '{0.username}'
         return template.format(self)
