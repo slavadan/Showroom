@@ -12,9 +12,12 @@ class SupplierSaleAdmin(admin.ModelAdmin):
         'cars',
     )
     list_filter = (
+        'name',
+        'percent',
         'updated',
         'created',
     )
+    readonly_fields = ['updated', 'created']
 
 
 @admin.register(CarShowroomSale)
@@ -26,6 +29,9 @@ class CarShowroomSaleAdmin(admin.ModelAdmin):
         'cars',
     )
     list_filter = (
+        'name',
+        'percent',
         'updated',
         'created',
     )
+    readonly_fields = ['updated', 'created']

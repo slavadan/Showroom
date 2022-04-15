@@ -11,3 +11,8 @@ class ShowroomUserAdmin(admin.ModelAdmin):
         'is_customer',
         'is_showroom',
     )
+    list_filter = (
+        'is_supplier',
+        'date_joined',
+    )
+    readonly_fields = ['date_joined']

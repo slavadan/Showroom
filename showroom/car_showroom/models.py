@@ -51,7 +51,8 @@ class CarShowroom(DateModel):
     )
 
     def __str__(self):
-        return f'{self.name}-{self.location}'
+        template = '{0.name} {0.location}'
+        return template.format(self)
 
 
 class ShowroomSellCar(DateModel):
@@ -62,7 +63,8 @@ class ShowroomSellCar(DateModel):
     supplier = models.ForeignKey('Supplier', on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.showroom}->{self.supplier}->{self.car}'
+        template = '{0.showroom} {0.supplier} {0.car}'
+        return template.format(self)
 
 
 class Customer(DateModel):
@@ -91,7 +93,8 @@ class Transaction(DateModel):
     car_showroom = models.ForeignKey(CarShowroom, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.car_showroom}-{self.count}'
+        template = '{0.car} {0.price} {0.count}'
+        return template.format(self)
 
 
 class Supplier(DateModel):
@@ -113,4 +116,5 @@ class SupplierSellCar(DateModel):
     price = PositiveDecimalField(max_digits=5, decimal_places=2)
 
     def __str__(self):
-        return f'{self.supplier}->{self.car}'
+        template = '{0.supplier} {0.car}'
+        return template.format(self)
