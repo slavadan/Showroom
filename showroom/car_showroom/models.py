@@ -63,7 +63,8 @@ class ShowroomSellCar(DateModel):
     supplier = models.ForeignKey('Supplier', on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.showroom}->{self.supplier}->{self.car}'
+        template = '{0.showroom} {0.supplier} {0.car}'
+        return template.format(self)
 
 
 class Customer(DateModel):
