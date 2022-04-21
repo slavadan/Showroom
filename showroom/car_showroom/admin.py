@@ -86,7 +86,7 @@ class TransactionAdmin(admin.ModelAdmin):
         'count',
         'car',
         'car_showroom',
-        'customer',
+
     )
     list_filter = (
         'price',

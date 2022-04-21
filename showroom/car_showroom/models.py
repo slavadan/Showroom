@@ -40,7 +40,7 @@ class CarShowroom(DateModel):
             'max_speed': 0,
             'engine_power': 0,
             'color': 'white',
-            'type': 'sedan'
+            'type': 'sedan',
         }
     )
     unique_buyers = models.ForeignKey(
@@ -79,6 +79,19 @@ class Customer(DateModel):
         on_delete=models.CASCADE,
         null=True,
         blank=True
+    )
+    buy_query = models.JSONField(
+        blank=True,
+        default={
+            'brand': "renault",
+            'model': "",
+            'count': 1,
+            'max_speed': 0,
+            'engine_power': 0,
+            'color': 'white',
+            'type': 'sedan',
+            'year': 0
+        }
     )
 
     def __str__(self):
